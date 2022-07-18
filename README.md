@@ -37,9 +37,8 @@ The folder structure looks like:
   - predictions</br>
     - all the txt files containing the predictions</br>
 
-After creating all the text files containing the predictions, I calculated the Word Error Rate and Character Error Rate in a Jupyter Notebook on my own laptop. 
+After creating all the text files containing the predictions, I calculated the Word Error Rate and Character Error Rate in a Jupyter Notebook on my own laptop. I added this notebook, which includes the output from running the cells, to this GitHub page. When running the notebook, the paths still need to be changed to match the map structure of the person running the code. The text files containing the transcriptions and the predictions of the experimental setups for both speakers and the transcriptions and predictions for the control speaker are also included in the files on GitHub. <br/>
+The transcriptions are created by taking the txt files I created during the preprocessing and comparing the filenames to the speaker word list of the data set. This allowed me to create a list of transcriptions in the order of the audio files. 
 
 ### Jobscript files
-
-
-
+Lastly, to run the code I used jobscripts. I added the jobscripts I used for preprocessing, the training, and the testing part of the MaskCycleGAN-VC. The preprocessing includes the part where you need to indicate the number of different time stretching experiments. The training part is mostly the same as it was in the original version of the MaskCycleGAN-VC. The testing part creates the audio files, here I needed to add all the different experiment's data. The preprocessing and testing jobscript show the jobscript for speaker M05, the jobscript for speaker M07 looks basically the same but has every instance of M05 replaced by M07. 
