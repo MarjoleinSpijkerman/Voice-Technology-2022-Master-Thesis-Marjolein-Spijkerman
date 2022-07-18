@@ -1,10 +1,12 @@
-# Voice Technology 2021/2022: Master Thesis by Marjolein Spijkerman
+# Voice Technology 2021/2022: Master Thesis by Marjolein Spijkerman (Work in Progress)
 
-This GitHub page contains an overview of all the code that I used for the experiments. 
+This GitHub page contains an overview of all the code that I used for the experiments. <br/>
+All the python files and jobscripts were run in the Peregrine cluster of the University of Groningen. <br/>
+The shorter code bits in the jupyter notebook that were not computationally complex were run on my own laptop. 
 
 ## The source of the base code and the data set
 
-As base for the experiments, I used already existing for the MaskCycleGAN-VC. This can be found on [https://github.com/GANtastic3/MaskCycleGAN-VC](https://github.com/GANtastic3/MaskCycleGAN-VC).
+As base for the experiments, I used already existing for the MaskCycleGAN-VC. This can be found on [https://github.com/GANtastic3/MaskCycleGAN-VC](https://github.com/GANtastic3/MaskCycleGAN-VC). To use this MaskCycleGAN-VC, I cloned the GitHub page to Peregrine and setup the conda environment in the same manner that they described on their page. To run the python commands that they describe on their page I used jobscript to make them work within Peregrine.
 
 The data that I used can be found on [http://www.isle.illinois.edu/sst/data/UASpeech/](http://www.isle.illinois.edu/sst/data/UASpeech/). To access this data you first need to ask for permission, this is why I cannot share the data on this GitHub page. 
 
@@ -21,10 +23,23 @@ In this function three things were added:
 2. The actual code needed for time-stretching. This part uses the code from [https://librosa.org/doc/main/generated/librosa.phase_vocoder.html](https://librosa.org/doc/main/generated/librosa.phase_vocoder.html). This was done in line 37-40.
 3. As the preprocessing seems to shuffle the order of the wav files, I stored the order in which the wav files occured in a txt file. This txt file will then later be used to see whether the ASR made the correct predictions. This is done in line 96-100.
 
-### Make predictions function
-To test the performance on the ASR model, an additional python function was used called "make_predictions.py". In order to be able to run this function, some of the paths in the code may need to be changed to match the correct folders when running this code somewhere else. 
+### Using the ASR for predictions and calculating the WER and CER. 
+To test the performance on the ASR model, an additional python function was used called "make_predictions.py". In order to be able to run this function, some of the paths in the code may need to be changed to match the correct folders when running this code somewhere else. <br/>
+
+Given a folder that contains separate folders each containing the audio files of one of the experimental settings, this code creates txt files containing the textual predictions for each audio file. Each experimental setting gets two txt files containing predictions, one for the original speech and one for the converted speech. Each audio files prediction gets its own line in these txt files. </br>
+
+The folder structure looks like:
+- Speaker M0X</br>
+  - experiment 1</br>
+    - all the audio files</br>
+  - experiment 2</br>
+    - all the audio files</br>
+  - predictions</br>
+    - all the txt files containing the predictions</br>
+
+After creating all the text files containing the predictions, I calculated the Word Error Rate and Character Error Rate in a Jupyter Notebook on my own laptop. 
 
 ### Jobscript files
-Will continue after dinner
+
 
 
