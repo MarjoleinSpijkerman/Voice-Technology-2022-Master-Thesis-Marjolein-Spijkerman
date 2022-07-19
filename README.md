@@ -1,4 +1,4 @@
-# Voice Technology 2021/2022: Master Thesis by Marjolein Spijkerman (Work in Progress)
+# Voice Technology 2021/2022: Master Thesis by Marjolein Spijkerman
 
 This GitHub page contains an overview of all the code that I used for the experiments. <br/>
 All the python files and jobscripts were run in the Peregrine cluster of the University of Groningen. <br/>
@@ -6,7 +6,7 @@ The shorter code bits in the jupyter notebook that were not computationally comp
 
 ## The source of the base code and the data set
 
-As base for the experiments, I used already existing for the MaskCycleGAN-VC. This can be found on [https://github.com/GANtastic3/MaskCycleGAN-VC](https://github.com/GANtastic3/MaskCycleGAN-VC). To use this MaskCycleGAN-VC, I cloned the GitHub page to Peregrine and setup the conda environment in the same manner that they described on their page. To run the python commands that they describe on their page I used jobscript to make them work within Peregrine.
+As base for the experiments, I used already existing for the MaskCycleGAN-VC. This can be found on [https://github.com/GANtastic3/MaskCycleGAN-VC](https://github.com/GANtastic3/MaskCycleGAN-VC). To use this MaskCycleGAN-VC, I cloned the GitHub page to Peregrine and setup the conda environment in the same manner that they described on their page. To run the python commands that they describe on their page I used jobscripts to make them work within Peregrine.
 
 The data that I used can be found on [http://www.isle.illinois.edu/sst/data/UASpeech/](http://www.isle.illinois.edu/sst/data/UASpeech/). To access this data you first need to ask for permission, this is why I cannot share the data on this GitHub page. 
 
@@ -37,8 +37,14 @@ The folder structure looks like:
   - predictions</br>
     - all the txt files containing the predictions</br>
 
-After creating all the text files containing the predictions, I calculated the Word Error Rate and Character Error Rate in a Jupyter Notebook on my own laptop. I added this notebook, which includes the output from running the cells, to this GitHub page. When running the notebook, the paths still need to be changed to match the map structure of the person running the code. The text files containing the transcriptions and the predictions of the experimental setups for both speakers and the transcriptions and predictions for the control speaker are also included in the files on GitHub. <br/>
+After creating all the text files containing the predictions, I calculated the Word Error Rate and Character Error Rate in a Jupyter Notebook on my own laptop. The code used for calculating the WER is part of ESPNET and can be found on [https://github.com/espnet/espnet/blob/master/espnet/nets/e2e_asr_common.py](https://github.com/espnet/espnet/blob/master/espnet/nets/e2e_asr_common.py). The function for calculating the CER is basically the same as the WER function, but with a few small changes. I added this notebook, which includes the output from running the cells, to this GitHub page. When running the notebook, the paths still need to be changed to match the map structure of the person running the code. The text files containing the transcriptions and the predictions of the experimental setups for both speakers and the transcriptions and predictions for the control speaker are also included in the files on GitHub. <br/>
+
 The transcriptions are created by taking the txt files I created during the preprocessing and comparing the filenames to the speaker word list of the data set. This allowed me to create a list of transcriptions in the order of the audio files. 
 
 ### Jobscript files
-Lastly, to run the code I used jobscripts. I added the jobscripts I used for preprocessing, the training, and the testing part of the MaskCycleGAN-VC. The preprocessing includes the part where you need to indicate the number of different time stretching experiments. The training part is mostly the same as it was in the original version of the MaskCycleGAN-VC. The testing part creates the audio files, here I needed to add all the different experiment's data. The preprocessing and testing jobscript show the jobscript for speaker M05, the jobscript for speaker M07 looks basically the same but has every instance of M05 replaced by M07. 
+Lastly, to run the code I used jobscripts. I added the jobscripts I used for preprocessing, the training, and the testing part of the MaskCycleGAN-VC. <br/>
+- The preprocessing includes the part where you need to indicate the number of different time stretching experiments. 
+- The training part is mostly the same as it was in the original version of the MaskCycleGAN-VC. 
+- The testing part creates the audio files, here I needed to add all the different experiment's data. 
+
+The preprocessing and testing jobscript show the jobscript for speaker M05, the jobscript for speaker M07 looks basically the same but has every instance of M05 replaced by M07. 
